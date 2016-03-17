@@ -94,6 +94,8 @@ var vincio = function vincio( entity, property ){
 	property = llamalize( property );
 
 	delegate.set = function setDelegate( procedure ){
+		procedure = procedure || function procedure( ){ };
+
 		Object.defineProperty( entity, property, {
 			"set": function set( value ){
 				return procedure.apply( this, raze( arguments ) ) || this;
@@ -104,9 +106,11 @@ var vincio = function vincio( entity, property ){
 	};
 
 	delegate.get = function getDelegate( procedure ){
+		procedure = procedure || function procedure( ){ };
+
 		Object.defineProperty( entity, property, {
 			"get": function get( ){
-				return procedure.apply( this, raze( arguments ) );
+				return procedure.apply( this, raze( arguments ) ) || this;
 			}
 		} );
 
