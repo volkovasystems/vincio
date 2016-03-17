@@ -22,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/volkovasystems/vincio/issues"
   },
-  "homepage": "https://github.com/volkovasystems/vincio#readme"
+  "homepage": "https://github.com/volkovasystems/vincio#readme",
+  "dependencies": {
+    "harden": "^0.2.0",
+    "llamalize": "^0.1.1",
+    "raze": "0.0.0"
+  }
 }

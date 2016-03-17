@@ -55,6 +55,12 @@ if( !( typeof window != "undefined" &&
 	var llamalize = require( "llamalize" );
 }
 
+if( !( typeof window != "undefined" &&
+	"raze" in window ) )
+{
+	var raze = require( "raze" );
+}
+
 if( typeof window != "undefined" && 
 	!( "harden" in window ) )
 {
@@ -67,13 +73,30 @@ if( typeof window != "undefined" &&
 	throw new Error( "llamalize is not defined" ); 
 }
 
+if( typeof window != "undefined" && 
+	!( "raze" in window ) )
+{
+	throw new Error( "raze is not defined" ); 
+}
+
 var vincio = function vincio( entity, property ){
+	/*:
+		@meta-configuration:
+			{
+				"entity:required": "object",
+				"property:required": "string"
+			}
+		@end-meta-configuration
+	*/
+
 	var delegate = { };
+
+	property = llamalize( property );
 
 	delegate.set = function setDelegate( procedure ){
 		Object.defineProperty( entity, property, {
 			"set": function set( value ){
-				procedure.apply( this )
+				return procedure.apply( this, raze( arguments ) ) || this;
 			}
 		} );
 
@@ -81,7 +104,13 @@ var vincio = function vincio( entity, property ){
 	};
 
 	delegate.get = function getDelegate( procedure ){
+		Object.defineProperty( entity, property, {
+			"get": function get( ){
+				return procedure.apply( this, raze( arguments ) );
+			}
+		} );
 
+		return delegate;
 	};
 
 	return delegate;
