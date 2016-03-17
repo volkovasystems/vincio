@@ -1,0 +1,29 @@
+{
+  "name": "vincio",
+  "description": "Bind a getter and setter object descriptor.",
+  "main": "vincio.js",
+  "authors": [
+    "Richeve S. Bebedor <richeve.bebedor@gmail.com>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "vincio",
+    "getter",
+    "setter",
+    "binding",
+    "object-descriptor"
+  ],
+  "homepage": "https://github.com/volkovasystems/vincio",
+  "moduleType": [
+    "es6",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
